@@ -22,4 +22,4 @@ I'm currently working on a 2D game, and these scripts are meant to simplify comm
 
 Happy developing! 
 
-Hope the game developed by you will be well-received!
+Hoping the game developed by you will be well-received!
