@@ -418,13 +418,13 @@ public partial class Protagonist : Node2D
 	{
     	var p1 = FirstStepPose(root);
     	var p2 = SecondStepPose(root);
-		  var bend = BendPose(root, truth); // real move -> if it moves to the edge of textures of the background
+		var bend = BendPose(root, truth); // real move -> if it moves to the edge of textures of the background
     	var p3 = ThirdStepPose(root);
     	var p4 = FourthStepPose(root);
 
     	await ApplyPose(p1, 0.2f);
     	await ApplyPose(p2, 0.1f);
-		  await ApplyPose(bend, 0.1f);
+		await ApplyPose(bend, 0.1f);
     	await ApplyPose(p3, 0.1f);
     	await ApplyPose(p4, 0.1f);
 
@@ -443,39 +443,26 @@ public partial class Protagonist : Node2D
 
 	public async Task Running(Joint root, bool truth)
 	{
-		  var p1 = FifthStepPose(root);
+		var p1 = FifthStepPose(root);
     	var p2 = SixthStepPose(root, truth); // real move -> if it moves to the edge of textures of the background
     	var p3 = SeventhStepPose(root);
-		  var p4 = EighthStepPose(root);
+		var p4 = EighthStepPose(root);
 
     	await ApplyPose(p1, 0.05f);
     	await ApplyPose(p2, 0.1f);
     	await ApplyPose(p3, 0.05f);
-		  await ApplyPose(p4, 0.1f);
+		await ApplyPose(p4, 0.1f);
 	}
 
 	public async Task eRunning(Joint root)
 	{
-		  var p1 = RunningEnd(root);
+		var p1 = RunningEnd(root);
 
     	await ApplyPose(p1, 0.1f);
 
-		  isApplyingMultiPoses = false;
+		isApplyingMultiPoses = false;
 	}
 
-
-	public async Task Jumping(Joint root)
-	{
-    	var p1 = Jumping_Start(root);
-		  var p2 = Jumping_Up(root);
-		  var p3 = Jumping_Down(root);
-		  var p4 = Jumping_End(root);
-
-		  await ApplyPose(p1, 0.1f);
-    	await ApplyPose(p2, 0.08f);
-    	await ApplyPose(p3, 0.08f);
-		  await ApplyPose(p4, 0.1f);
-	}
 
 	static bool Toward = true;	// true -> facing right, false -> facing left
 	public async Task Turn_Around(Joint root, bool truth)
@@ -793,62 +780,6 @@ public partial class Protagonist : Node2D
       { root.Next[1].Next[0], new JointPose { Rotate = (float)ToGodotInput(-0.4f) } },
     	};
 	}
-	// -----------------------------------------------
-
-	Dictionary<Joint, JointPose> Jumping_Start(Joint root)
-	{
-    	return new Dictionary<Joint, JointPose>
-    	{
-			{ root, new JointPose { Rotate = (float)ToGodotInput(-0.15f), Move = (Vector2)ToGodotInput(new Vector2(0, -20)) } },
-			{ root.Next[0], new JointPose { Move = (Vector2)ToGodotInput(new Vector2(0, -10)) } },
-			{ root.Next[2].Next[0], new JointPose { Rotate = (float)ToGodotInput(0.4f) } },
-			{ root.Next[1].Next[0], new JointPose { Rotate = (float)ToGodotInput(0.4f) } },
-			{ root.Next[3], new JointPose { Rotate = (float)ToGodotInput(0.5f) } },
-      { root.Next[3].Next[0], new JointPose { Rotate = (float)ToGodotInput(-0.35f) } },
-			{ root.Next[4], new JointPose { Rotate = (float)ToGodotInput(0.5f) } },
-      { root.Next[4].Next[0], new JointPose { Rotate = (float)ToGodotInput(-0.75f) } },
-    	};
-	}
-
-	Dictionary<Joint, JointPose> Jumping_Up(Joint root)
-	{
-    	return new Dictionary<Joint, JointPose>
-    	{
-			{ root, new JointPose { Rotate = (float)ToGodotInput(0.15f), Move = (Vector2)ToGodotInput(new Vector2(0, 150)) } },
-			{ root.Next[0], new JointPose { Move = (Vector2)ToGodotInput(new Vector2(0, 10)) } },
-			{ root.Next[2].Next[0], new JointPose { Rotate = (float)ToGodotInput(-0.4f) } },
-			{ root.Next[1].Next[0], new JointPose { Rotate = (float)ToGodotInput(-0.4f) } },
-			{ root.Next[3], new JointPose { Rotate = (float)ToGodotInput(-0.5f) } },
-      { root.Next[3].Next[0], new JointPose { Rotate = (float)ToGodotInput(0.35f) } },
-			{ root.Next[4], new JointPose { Rotate = (float)ToGodotInput(-0.5f) } },
-      { root.Next[4].Next[0], new JointPose { Rotate = (float)ToGodotInput(0.75f) } },
-    	};
-	}
-
-	Dictionary<Joint, JointPose> Jumping_Down(Joint root)
-	{
-    	return new Dictionary<Joint, JointPose>
-    	{
-			{ root, new JointPose { Move = (Vector2)ToGodotInput(new Vector2(0, -140)) } },
-			{ root.Next[3], new JointPose { Rotate = (float)ToGodotInput(0.2f) } },
-        	{ root.Next[3].Next[0], new JointPose { Rotate = (float)ToGodotInput(-0.2f) } },
-			{ root.Next[4], new JointPose { Rotate = (float)ToGodotInput(0.2f) } },
-        	{ root.Next[4].Next[0], new JointPose { Rotate = (float)ToGodotInput(-0.6f) } },
-    	};
-	}
-
-
-	Dictionary<Joint, JointPose> Jumping_End(Joint root)
-	{
-    	return new Dictionary<Joint, JointPose>
-    	{
-			{ root, new JointPose { Move = (Vector2)ToGodotInput(new Vector2(0, 10)) } },
-			{ root.Next[3], new JointPose { Rotate = (float)ToGodotInput(-0.2f) } },
-        	{ root.Next[3].Next[0], new JointPose { Rotate = (float)ToGodotInput(0.2f) } },
-			{ root.Next[4], new JointPose { Rotate = (float)ToGodotInput(-0.2f) } },
-        	{ root.Next[4].Next[0], new JointPose { Rotate = (float)ToGodotInput(0.6f) } },
-    	};
-	}
 
 	// -----------------------------------------------
 
@@ -927,8 +858,6 @@ public partial class Protagonist : Node2D
 
 	public override void _Process(double delta)
 	{
-		if(Input.IsKeyPressed(Key.Up))
-			_ = PlayMotion(() => Jumping(joints_group));
 
 		if (_currentMotion != null && !_currentMotion.IsCompleted)
         	return;
