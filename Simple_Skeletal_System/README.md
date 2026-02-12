@@ -49,6 +49,37 @@ Each parameter set corresponds to a different character or style and contains **
 
 ---
 
+# Demo Images
+
+## Walking Animation Example
+<p float="left">
+  <img src="Demo/1-1.png" width="120" />
+  <img src="Demo/1-2.png" width="120" />
+  <img src="Demo/1-3.png" width="120" />
+  <img src="Demo/1-4.png" width="120" />
+</p>
+
+---
+
+## Running Animation Example
+<p float="left">
+  <img src="Demo/2-1.png" width="120" />
+  <img src="Demo/2-2.png" width="120" />
+  <img src="Demo/2-3.png" width="120" />
+  <img src="Demo/2-4.png" width="120" />
+</p>
+
+---
+
+## Jumping Animation Example
+<p float="left">
+  <img src="Demo/3-1.png" width="120" />
+  <img src="Demo/3-2.png" width="120" />
+  <img src="Demo/3-3.png" width="120" />
+</p>
+
+---
+
 ## Key Methods
 
 ### Initialization
